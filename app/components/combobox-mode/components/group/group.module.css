@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--gray-4);
+}
+.root:last-child {
+  border-bottom: 0;
+}
+.root:has([cmdk-group-items]:empty) {
+  padding: 0;
+  border: 0;
+}

@@ -1,0 +1,21 @@
+.root :global(.rt-ScrollAreaScrollbar) {
+  /* z-index: 2; */
+}
+
+.root {
+  border-radius: 80px;
+}
+
+.row {
+  cursor: pointer;
+}
+
+.cell {
+  background-color: white;
+}
+.row:hover .cell {
+  background-color: var(--accent-2)
+}
+.row .cellActive {
+  background-color: var(--accent-3);
+}

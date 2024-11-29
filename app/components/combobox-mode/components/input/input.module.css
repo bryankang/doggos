@@ -1,0 +1,11 @@
+.root {
+  border-bottom: 1px solid var(--gray-6);
+}
+.root:has([cmdk-empty]) {
+  border-bottom-color: transparent;
+}
+
+.input {
+  box-shadow: none;
+  outline: none;
+}

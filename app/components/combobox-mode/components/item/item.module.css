@@ -1,0 +1,14 @@
+.item {
+  cursor: default;
+}
+.item[data-selected="true"] .innerItem {
+  border-radius: var(--radius-3);
+  background-color: var(--gray-a3);
+}
+
+.icon {
+  opacity: 0;
+}
+.item[data-selected="true"] .icon {
+  opacity: 1;
+}

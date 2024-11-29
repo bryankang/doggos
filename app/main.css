@@ -1,0 +1,18 @@
+.radix-themes {
+	--default-font-family:  Quicksand;
+  --heading-font-family: Quicksand;
+  --strong-font-family: Quicksand;
+  --em-font-family: Quicksand;
+  --quote-font-family: Quicksand;
+}
+
+.radix-themes {
+	--font-weight-light: 200;
+	--font-weight-regular: 600;
+	--font-weight-medium: 600;
+	--font-weight-bold: 800;
+}
+
+.rt-BaseDialogOverlay {
+  --color-overlay: rgba(0, 0, 0, 0);
+}
