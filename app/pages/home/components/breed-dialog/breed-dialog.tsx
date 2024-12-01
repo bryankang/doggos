@@ -43,8 +43,9 @@ export const BreedDialog: FC<BreedDialogProps> = ({
       }
     };
 
+    if (!open) return;
     fetchExtra();
-  }, [breed]);
+  }, [breed, open]);
 
   return (
     <Dialog.Root
