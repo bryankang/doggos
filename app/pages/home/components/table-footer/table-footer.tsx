@@ -1,15 +1,14 @@
-import { FC, ReactNode } from "react";
 import { Button, Flex, Text } from "@radix-ui/themes";
 import { useRevalidator, useSearchParams } from "@remix-run/react";
+import { FC } from "react";
 import { useHomeContext } from "../../home.context";
 
 export type TableFooterProps = {
-  children?: ReactNode;
-  className?: string;
+  scrollToTop?: () => void;
 };
 
-export const TableFooter: FC<TableFooterProps> = ({ children, className }) => {
-  const { breeds, totalRows } = useHomeContext();
+export const TableFooter: FC<TableFooterProps> = ({ scrollToTop }) => {
+  const { totalRows } = useHomeContext();
   const { revalidate } = useRevalidator();
   const [searchParams, setSearchParams] = useSearchParams();
   const pageString = searchParams.get("page") ?? "1";
@@ -39,6 +38,7 @@ export const TableFooter: FC<TableFooterProps> = ({ children, className }) => {
           disabled={page === 1}
           onClick={() => {
             changePage(page - 1);
+            scrollToTop?.();
           }}
         >
           Back
@@ -55,6 +55,7 @@ export const TableFooter: FC<TableFooterProps> = ({ children, className }) => {
           disabled={20 * page >= totalRows}
           onClick={() => {
             changePage(page + 1);
+            scrollToTop?.();
           }}
         >
           Next

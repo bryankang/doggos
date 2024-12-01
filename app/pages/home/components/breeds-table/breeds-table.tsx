@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useRef, useState } from "react";
 import { Button, Dialog, Flex, Table, Text } from "@radix-ui/themes";
 import styles from "./breeds-table.module.css";
 import {
@@ -16,8 +16,8 @@ export type BreedsTableProps = {
 };
 
 export const BreedsTable: FC<BreedsTableProps> = ({ onRowClick }) => {
-  const { breeds, favorites } = useHomeContext();
-  const [breedOpen, setBreedOpen] = useState(false);
+  const tableRef = useRef<HTMLTableElement>(null);
+  const { breeds } = useHomeContext();
   const loading = false;
   const [loadingData] = useState(Array(30).fill({}));
   const columns = useColumns({ loading });
@@ -26,6 +26,13 @@ export const BreedsTable: FC<BreedsTableProps> = ({ onRowClick }) => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  const scrollToTop = () => {
+    const scroll = tableRef.current?.getElementsByClassName(
+      "rt-ScrollAreaViewport"
+    )?.[0];
+    scroll?.scrollTo(0, 0);
+  };
 
   if (!breeds.length) {
     return (
@@ -40,6 +47,7 @@ export const BreedsTable: FC<BreedsTableProps> = ({ onRowClick }) => {
       <Flex position="relative" flexGrow="1" direction="column">
         <Flex position="absolute" top="0" bottom="0" width="100%" height="100%">
           <Table.Root
+            ref={tableRef}
             layout="fixed"
             size="3"
             className={styles.root}
@@ -103,7 +111,7 @@ export const BreedsTable: FC<BreedsTableProps> = ({ onRowClick }) => {
           </Table.Root>
         </Flex>
       </Flex>
-      <TableFooter />
+      <TableFooter scrollToTop={scrollToTop} />
     </Flex>
   );
 };
